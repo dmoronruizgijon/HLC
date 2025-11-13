@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/carrito_style.css}">
+</head>
+<body>
+      <header class="header">
+        <a class="titulo" th:href="@{/inicio}"><h1 class="title">Moda con Dani</h1></a>
+
+                <div class="header-right">
+            <a class="titulo" th:if="${session.usuario==null}" th:href="@{/iniciar_sesion}" th:text="'Iniciar sesión'"></a>
+            <a th:unless="${session.usuario==null}" th:href="@{/ajustes}"><img th:unless="${session.usuario==null}" th:src="@{/img/user_84308.png}" alt="Logo user"></a>
+            <a th:unless="${session.usuario==null}" th:href="@{/carrito}"><img th:src="@{/img/carrito.png}" alt="Logo carrito"></a>
+            <a th:href="@{/buscar}"><img th:src="@{/img/lupa.svg}" alt="" class="icono"></a>
+          </div>
+    </header>
+    <div class="main-content">
+      <div class="lateral_izquierda" th:unless="${session.carrito==null}" th:each="producto : ${session.carrito}">
+        <div class="producto">
+            <p th:text="${catalogo.get(producto.key).nombre}"></p>
+            <p th:text="${catalogo.get(producto.key).precio}+'€'"></p>
+            <a th:href="@{/añadir(id=${producto.key})}"><img th:src="@{/img/mas.svg}" alt="" class="icono"></a>
+            <p th:text="${producto.value}"></p>
+            
+            <form action="eliminar" method="post">
+                <input type="hidden" name="eliminar_id" th:value="${producto.key}">
+              <button type="submit">Eliminar</button>
+            </form>
+            <form action="eliminar_todo" method="post">
+                <input type="hidden" name="eliminar_id" th:value="${producto.key}">
+              <button type="submit">Eliminar Todo</button>
+            </form>
+        </div>
+    </div>
+    <div class="lateral_derecha">
+        <h3 th:text="${total==null}? 'Total : 0.0€':'Total :'+${total}+'€'"></h3>
+        <h3 th:text="'Saldo: '+${usuarioSaldo}+'€'"></h3>
+            <form th:unless="${session.carrito == null or session.carrito.isEmpty()}" action="comprar" method="post">
+              <input type="hidden" name="total" th:value="${total}">
+              <button type="submit">Comprar</button>
+            </form>
+            <form action="inicio" method="get">
+              <button type="submit">Catálogo</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

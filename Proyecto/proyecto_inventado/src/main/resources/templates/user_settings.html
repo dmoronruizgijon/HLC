@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/ajustes_style.css}">
+</head>
+<body>
+        <header class="header">
+        <a class="titulo" th:href="@{/inicio}"><h1 class="title">Moda con Dani</h1></a>
+
+            <div class="header-right">
+            <a th:href="@{/carrito}"><img th:src="@{/img/carrito.png}" alt="Logo carrito"></a>
+            <a th:href="@{/buscar}"><img th:src="@{/img/lupa.svg}" alt="" class="icono"></a>
+        </div>
+    </header>
+    <main>
+        <div class="main-content">
+            <a th:href="@{/cerrar_sesion}" th:text="'Cerrar sesión'"></a>
+            <a th:href="@{/saldo}" th:text="'Monedero'"></a>
+        </div>
+    </main>
+    
+</body>
+</html>

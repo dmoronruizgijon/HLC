@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/detalles_style.css}">
+</head>
+<body>
+        <header class="header">
+        <a class="titulo" th:href="@{/inicio}"><h1 class="title">Moda con Dani</h1></a>
+
+                <div class="header-right">
+            <a class="titulo" th:if="${session.usuario==null}" th:href="@{/iniciar_sesion}" th:text="'Iniciar sesión'"></a>
+            <a th:unless="${session.usuario==null}" th:href="@{/ajustes}"><img th:unless="${session.usuario==null}" th:src="@{/img/user_84308.png}" alt="Logo user"></a>
+            <a th:unless="${session.usuario==null}" th:href="@{/carrito}"><img th:src="@{/img/carrito.png}" alt="Logo carrito"></a>
+                    <a th:href="@{/buscar}"><img th:src="@{/img/lupa.svg}" alt="" class="icono"></a>
+        </div>
+    </header>
+    <div class="main-content">
+        <div>
+        <img th:if="${prenda.tipo.name() == 'TORSO'}" th:src="@{/img/Torso/Camiseta.webp}" alt="">
+        <img th:if="${prenda.tipo.name() == 'PIERNAS'}" th:src="@{/img/Piernas/Pantalones.jpg}" alt="">
+        <img th:if="${prenda.tipo.name() == 'ZAPATOS'}" th:src="@{/img/Zapatos/Zapatos.png}" alt="">
+        <p th:text="${prenda.nombre}"></p>
+        <p th:text="${prenda.precio}+'€'"></p>
+    </div>
+    <div>
+        <p th:text="${prenda.descripcion}"></p>
+        <form action="carrito" method="post">
+            <input type="hidden" name="prenda_carrito" th:value="${prendaid}">
+          <button type="submit">Añadir al carrito</button>
+        </form>
+        <form action="inicio" method="get">
+          <button type="submit">Volver</button>
+        </form>
+    </div>
+    </div>
+    
+</body>
+</html>

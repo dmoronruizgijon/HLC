@@ -1,0 +1,167 @@
+/* ====== RESETEO GENERAL ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ====== ESTILO BASE ====== */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* 👈 hace que header esté arriba y el contenido abajo */
+}
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 40px;
+    flex: 1; /* 👈 ocupa el espacio restante debajo del header */
+}
+/* ====== CABECERA ====== */
+.header {
+    background: linear-gradient(135deg, #4b79a1, #283e51);
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.titulo{
+    background-color: #ffffff;
+    color: #283e51;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.titulo:hover {
+    background-color: #dfe6e9;
+}
+
+.header img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: white;
+    padding: 4px;
+}
+
+/* ====== COLUMNA IZQUIERDA (PRODUCTOS) ====== */
+.lateral_izquierda {
+    flex: 2;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.producto {
+    background: #f9fafb;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.producto:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.producto p {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* ====== COLUMNA DERECHA (SALDO Y BOTONES) ====== */
+.lateral_derecha {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    height: fit-content;
+}
+
+.lateral_derecha h3 {
+    color: #283e51;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* ====== BOTONES ====== */
+.lateral_derecha button {
+    width: 100%;
+    background: linear-gradient(135deg, #4b79a1, #283e51);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-bottom: 10px;
+}
+
+.lateral_derecha button:hover {
+    background: linear-gradient(135deg, #5c91c0, #334a60);
+    transform: translateY(-2px);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 800px) {
+    body {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .lateral_izquierda, .lateral_derecha {
+        width: 100%;
+    }
+
+    .producto {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .lateral_derecha h3 {
+        margin-bottom: 15px;
+    }
+}
+
+    .icono {
+  width: 20px;     /* ancho deseado */
+  height: 20px;    /* alto deseado */
+  transition: transform 0.2s ease; /* animación opcional */
+}
+
+.icono:hover {
+  transform: scale(1.1); /* agrandar un poco al pasar el ratón */
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" th:href="@{/css/buscar_style.css}">
+</head>
+
+<body>
+  <header class="header">
+        <a class="titulo" th:href="@{/inicio}"><h1 class="title">Moda con Dani</h1></a>
+
+                <div class="header-right">
+            <a class="titulo" th:if="${session.usuario==null}" th:href="@{/iniciar_sesion}" th:text="'Iniciar sesión'"></a>
+            <a th:unless="${session.usuario==null}" th:href="@{/ajustes}"><img th:unless="${session.usuario==null}" th:src="@{/img/user_84308.png}" alt="Logo user"></a>
+            <a th:unless="${session.usuario==null}" th:href="@{/carrito}"><img th:src="@{/img/carrito.png}" alt="Logo carrito"></a>
+                    <a th:href="@{/buscar}"><img th:src="@{/img/lupa.svg}" alt="" class="icono"></a>
+        </div>
+    </header>
+    
+  </header>
+  <main>
+    <!-- #lists es como si llamase a la clase List -->
+    <div class="antes_de_buscar" th:if="${catalogo == null or #lists.isEmpty(catalogo)}">
+      <form action="buscar_datos" method="post">
+        <label for="tipo">Tipo de prenda:</label>
+        <select name="tipo">
+          <option value="TORSO">Camisetas o chaquetas</option>
+          <option value="PIERNAS">Pantalones</option>
+          <option value="ZAPATOS">Zapatos</option>
+        </select>
+        <select name="material">
+          <option value="ALGODON">Algodón</option>
+          <option value="POLIESTER">Poliéster</option>
+          <option value="LANA">Lana</option>
+          <option value="SEDA">Seda</option>
+          <option value="LINO">Lino</option>
+          <option value="VAQUERO">Vaquero</option>
+          <option value="CUERO">Cuero</option>
+          <option value="GOMA">Goma</option>
+          <option value="NAILON">Nailón</option>
+          <option value="TELA_SINTETICA">Tela sintética</option>
+          <option value="ANTE">Ante</option>
+          <option value="MALLA">Malla</option>
+          <option value="CAUCHO">Caucho</option>
+          <option value="LONA">Lona</option>
+        </select>
+        <button type="submit">Buscar</button>
+      </form>
+      <form action="filtrar_datos" method="post">
+        <label for="tipo">Tipo de prenda:</label>
+        <select name="tipo">
+          <option value="TORSO">Camisetas o chaquetas</option>
+          <option value="PIERNAS">Pantalones</option>
+          <option value="ZAPATOS">Zapatos</option>
+        </select>
+        <button type="submit">Filtrar</button>
+      </form>
+
+      <form action="comparar_precio" method="post">
+        <label for="menor">Precio:</label>
+        <select name="menor">
+          <option value="1">Mayor a menor</option>
+          <option value="0">Menor a mayor</option>
+        </select>
+        <button type="submit">Comparar</button>
+      </form>
+    </div>
+  <div class="despues_de_buscar">
+    <!-- Foreach de prendas y dependiendo del tipo se le da una foto u otra.
+     prenda.key es el indice del producto en el servicio. prenda.value es el producto entero-->
+      <div class="prenda-text" th:each="prenda : ${catalogo}">
+        <a th:if="${prenda.value.tipo.name() == 'ZAPATOS'}" th:href="@{/detalles(id=${prenda.key})}">
+          <img th:src="@{/img/Zapatos/Zapatos.png}" alt="Imagen prenda">
+        </a>
+
+        <a th:if="${prenda.value.tipo.name() == 'TORSO'}" th:href="@{/detalles(id=${prenda.key})}">
+          <img th:src="@{/img/Torso/Camiseta.webp}" alt="Imagen prenda">
+        </a>
+
+        <a th:if="${prenda.value.tipo.name() == 'PIERNAS'}" th:href="@{/detalles(id=${prenda.key})}">
+          <img th:src="@{/img/Piernas/Pantalones.jpg}" alt="Imagen prenda">
+        </a>
+
+        <p class="prenda-nombre" th:text="${prenda.value.nombre}">Nombre de la prenda</p>
+        <p class="prenda-precio" th:text="${prenda.value.precio} + '€'">Precio</p>
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

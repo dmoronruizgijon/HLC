@@ -1,0 +1,120 @@
+/* ====== RESET ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ====== ESTILO GENERAL ====== */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    overflow-x: hidden; /* 👈 evita scroll horizontal */
+}
+
+/* ====== CABECERA ====== */
+.header {
+    background: linear-gradient(135deg, #4b79a1, #283e51);
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.titulo{
+    background-color: #ffffff;
+    color: #283e51;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.titulo:hover {
+    background-color: #dfe6e9;
+}
+
+.header img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: white;
+    padding: 4px;
+}
+
+/* ====== CATÁLOGO ====== */
+main {
+    padding: 40px 60px;
+}
+
+main > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* 👈 Permite que los elementos bajen de fila */
+    justify-content: flex-start; /* Centra horizontalmente */
+    gap: 10px; /* Espacio entre prendas */
+}
+
+/* Cada prenda */
+main > div > div {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 220px; /* 👈 tamaño fijo de cada tarjeta */
+}
+
+main > div > div:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagen del producto */
+main img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Nombre y precio */
+.prenda-nombre {
+    font-weight: 600;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.prenda-precio {
+    color: #007b83;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 700px) {
+    main {
+        padding: 20px;
+    }
+
+    main > div {
+        gap: 15px;
+    }
+
+    main > div > div {
+        width: 160px;
+    }
+
+    main img {
+        height: 150px;
+    }
+}

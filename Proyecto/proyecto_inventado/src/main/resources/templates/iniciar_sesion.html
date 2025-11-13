@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/inicioSesion_style.css}">
+</head>
+<body>
+  
+    <form action="inicio" method="post">
+      <p th:if="${inicio_malo!=null}" th:text="${inicio_malo}"></p>
+      <label for="usuario">Usuario:</label>
+      <input type="text" name="usuario">
+      <label for="contra">Contraseña:</label>
+      <input type="password" name="contra">
+      <button type="submit">Iniciar sesion</button>
+    </form>
+</body>
+</html>

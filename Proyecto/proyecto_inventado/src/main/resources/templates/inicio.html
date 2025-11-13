@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/inicio_style.css}">
+</head>
+
+<body>
+    <header class="header">
+        <a class="titulo" th:href="@{/inicio}"><h1 class="title">Moda con Dani</h1></a>
+
+                <div class="header-right">
+            <a class="titulo" th:if="${session.usuario==null}" th:href="@{/iniciar_sesion}" th:text="'Iniciar sesión'"></a>
+            <a th:unless="${session.usuario==null}" th:href="@{/ajustes}"><img th:unless="${session.usuario==null}" th:src="@{/img/user_84308.png}" alt="Logo user"></a>
+            <a th:unless="${session.usuario==null}" th:href="@{/carrito}"><img th:src="@{/img/carrito.png}" alt="Logo carrito"></a>
+                    <a th:href="@{/buscar}"><img th:src="@{/img/lupa.svg}" alt="" class="icono"></a>
+        </div>
+    </header>
+    <main>
+        <div >
+            <div class="prenda-text" th:each="prenda, iterStat : ${catalogo}">
+
+                <a th:if="${prenda.tipo.name() == 'ZAPATOS'}" th:href="@{/detalles(id=${iterStat.index})}"><img
+                        th:src="@{/img/Zapatos/Zapatos.png}" alt="Imagen prenda"></a>
+                <a th:if="${prenda.tipo.name() == 'TORSO'}" th:href="@{/detalles(id=${iterStat.index})}"><img
+                        th:src="@{/img/Torso/Camiseta.webp}" alt="Imagen prenda"></a>
+                <a th:if="${prenda.tipo.name() == 'PIERNAS'}" th:href="@{/detalles(id=${iterStat.index})}"><img
+                        th:src="@{/img/Piernas/Pantalones.jpg}" alt="Imagen prenda"></a>
+
+                <p class="prenda-nombre" th:text="${prenda.nombre}">Nombre de la prenda</p>
+                <p class="prenda-precio" th:text="${prenda.precio}+'€'">Precio</p>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
